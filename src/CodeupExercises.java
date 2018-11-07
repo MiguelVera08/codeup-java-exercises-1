@@ -31,7 +31,10 @@ public class CodeupExercises {
         float length = scanner.nextFloat();
         System.out.print("\nEnter in width:");
         float width = scanner.nextFloat();
-        System.out.printf("\nThe perimeter of the room is %.2f.\nThe Area of the room is %.2f.", (length*2)+(width*2), length*width);
-
+        System.out.print("\nEnter in height:");
+        float height = scanner.nextFloat();
+        System.out.printf("\nThe perimeter of the room is %.2f.\nThe Area of the room is %.2f." +
+                "\nThe volume of the room is %.2f",
+                (length*2)+(width*2), length*width, length*width*height);
     }
 }
