@@ -13,9 +13,9 @@ public class CodeupExercises {
 //        System.out.format("The value of pi is approximately %.2f", pi);
 
 //        System.out.print("\nEnter an integer: ");
-//        int userInput = scanner.nextInt();
+//        int userNum = scanner.nextInt();
 //
-//        System.out.printf("You entered: --> \"%s\" <--", userInput);
+//        System.out.printf("You entered: --> \"%s\" <--", userNum);
 
 //        System.out.print("\nEnter 3 words: ");
 //        String userInput = scanner.next();
@@ -25,9 +25,9 @@ public class CodeupExercises {
 //        System.out.printf("You entered: --> \"%s, %s, %s\" <--", userInput, userInput2, userInput3);
 
 //        System.out.print("\nEnter a sentence: ");
-//        String userInput = scanner.nextLine();
+//        String userSentence = scanner.nextLine();
 //
-//        System.out.printf("You entered: --> \"%s\" <--", userInput);
+//        System.out.printf("You entered: --> \"%s\" <--", userSentence);
 
         System.out.print("\nEnter in length:");
         float length = scanner.nextFloat();
@@ -35,7 +35,7 @@ public class CodeupExercises {
         float width = scanner.nextFloat();
         System.out.print("\nEnter in height:");
         float height = scanner.nextFloat();
-        System.out.printf("\nThe perimeter of the room is %.2f.\nThe Area of the room is %.2f." +
+        System.out.printf("\nThe perimeter of the room is %.2f.\nThe area of the room is %.2f." +
                 "\nThe volume of the room is %.2f",
                 (length*2)+(width*2), length*width, length*width*height);
     }
