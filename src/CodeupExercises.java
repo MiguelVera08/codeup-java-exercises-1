@@ -5,17 +5,19 @@ import static java.lang.Integer.parseInt;
 
 public class CodeupExercises {
     public static void main(String[] args) {
-        double pi = 3.14159;
-        System.out.format("The value of pi is approximately %.2f", pi);
 
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\n");
+
+//        double pi = 3.14159;
+//        System.out.format("The value of pi is approximately %.2f", pi);
+
 //        System.out.print("\nEnter an integer: ");
 //        int userInput = scanner.nextInt();
 //
 //        System.out.printf("You entered: --> \"%s\" <--", userInput);
 
-//        System.out.print("\nEnter 3 strings: ");
+//        System.out.print("\nEnter 3 words: ");
 //        String userInput = scanner.next();
 //        String userInput2 = scanner.next();
 //        String userInput3 = scanner.next();
