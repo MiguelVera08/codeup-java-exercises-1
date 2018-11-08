@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class TextAdventure {
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String home = "You are at home in a comfortable cottage on the countryside when you are attacked by " +
@@ -33,14 +34,14 @@ public class TextAdventure {
         String sheepWithKnife = "Inspecting your sheep, you decide it best to let nothing go to waste. You go to strip the sheep of it's hide, " +
                 "and remember that you pulled a knife from the wreckage. You skillfully strip the sheep of it's hide. \n    GET WOOL.";
         String merchantVillage = "You are now in a village of merchants. Your society is one of barterers, and not one of money like many " +
-                "of the merchants here. You see some vagrants on the street as well as a blacksmith. Your path can continue west" +
+                "of the merchants here. You see some vagrants on the street as well as a blacksmith. Your path can continue east" +
                 " and north.";
         String merchantVillageNoVagrants = "You are now in a village of merchants. Your society is one of barterers, and not one of money like many " +
-                "of the merchants here. You see a blacksmith. Your path can continue west and north.";
+                "of the merchants here. You see a blacksmith. Your path can continue east and north.";
         String merchantVillageNoSmith = "You are now in a village of merchants. Your society is one of barterers, and not one of money like many " +
-                "of the merchants here. You see some vagrants on the street. Your path can continue west and north.";
+                "of the merchants here. You see some vagrants on the street. Your path can continue east and north.";
         String merchantVillageNoExtras = "You are now in a village of merchants. Your society is one of barterers, and not one of money like many " +
-                "of the merchants here. Your path can continue west and north.";
+                "of the merchants here. Your path can continue east and north.";
         String vagrants = "You decide to talk to the vagrants. The vagrants, however, are too cold to say much of anything.";
         String vagrantsWithWool = "You decide to talk to the vagrants. The vagrants see that you are carrying wool, and ask for your sheep pelt. " +
                 "They inform you that they have a lamp that they'd be willing to trade for your wool. The lamp does not have oil.\nTRADE FOR LAMP?";
@@ -50,11 +51,12 @@ public class TextAdventure {
         String blacksmith = "You decide to talk to the blacksmith. The blacksmith however, is uninterested in anything you have to offer, and ignores you.";
         String blacksmithWithHide = "You decide to talk to the blacksmith. The blacksmith is interested in your cowhide, and offers to give you " +
                 "a free sword. He admits that it is not his best sword, but it is better than anyone else's in the village. You accept the trade. " +
-                "You have little use for an untanned hide.\n    GET SWORD.";
+                "You have little use for an untanned hide.\n     HIDE LOST.\n    GET SWORD.";
         String merchants = "You decided to talk to the merchants. They have no interest in what you have to say, and you cannot " +
                 "understand them.";
-        String merchantsWithDog = "You decided to talk to the merchants. They notice your dog, and give it a loving pet. They have no interest in" +
+        String merchantsWithDog = "You decided to talk to the merchants. They notice your dog, and give it a loving pet. They have no interest in " +
                 "what you have to say, and you cannot understand them.";
+        String harbor = "You find yourself at a harbor. Ahead of you, you see a";
 
 
         boolean hasKnife = false;
@@ -63,8 +65,6 @@ public class TextAdventure {
         boolean hasWool = false;
         boolean hasLamp = false;
         boolean hasSword = false;
-        boolean vagrantTrade = false;
-        boolean smithTrade = false;
 
         // The actual Game itself...
 
@@ -119,17 +119,82 @@ public class TextAdventure {
                     if (newHomeCommand.equalsIgnoreCase("Search Wreckage")) {
                         System.out.println(wreckage);
                         hasKnife = true;
-                    } else if (newHomeCommand.equalsIgnoreCase("Go To Door")){
+                    } else if (newHomeCommand.equalsIgnoreCase("Go To Door")) {
                         inHome = false;
+                    } else if (newHomeCommand.equalsIgnoreCase("Where Am I?")) {
+                        if (hasKnife) {
+                            System.out.println(homeWithKnife);
+                        } else {
+                            System.out.println(homeAgain);
+                        }
                     } else {
                         System.out.println("I don't understand \"" + newHomeCommand + ".\"");
                     }
                 }
                 System.out.println(frontYard);
-            } else if (yardCommand.equalsIgnoreCase("Go To West") || yardCommand.equalsIgnoreCase("Go To North")) {
+            } else if (yardCommand.equalsIgnoreCase("Go To West")) {
+                boolean inMV = true;
+                if (hasLamp && hasSword) {
+                    System.out.println(merchantVillageNoExtras);
+                } else if (hasLamp) {
+                    System.out.println(merchantVillageNoVagrants);
+                } else if (hasSword) {
+                    System.out.println(merchantVillageNoSmith);
+                } else {
+                    System.out.println(merchantVillage);
+                }
+                while (inMV) {
+                    System.out.println("Now what?");
+                    String mVCommand = sc.nextLine();
+                    if (mVCommand.equalsIgnoreCase("Talk to Merchants") && hasDog == false) {
+                        System.out.println(merchants);
+                    } else if (mVCommand.equalsIgnoreCase("Talk to Merchants") && hasDog == true) {
+                        System.out.println(merchantsWithDog);
+                    } else if (mVCommand.equalsIgnoreCase("Talk to Vagrants") && hasWool == false && hasLamp == false) {
+                        System.out.println(vagrants);
+                    } else if (mVCommand.equalsIgnoreCase("Talk to Vagrants") && hasWool == true && hasLamp == false) {
+                        System.out.println(vagrantsWithWool);
+                        String willTrade = sc.nextLine();
+                        if (willTrade.equalsIgnoreCase("Yes")) {
+                            System.out.println(yesTrade);
+                            hasLamp = true;
+                            hasWool = false;
+                        } else {
+                            System.out.println(noTrade);
+                        }
+                    } else if (mVCommand.equalsIgnoreCase("Talk to Vagrants") && hasLamp == true) {
+                        System.out.println("The vagrants are no longer available.");
+                    } else if (mVCommand.equalsIgnoreCase("Talk to Blacksmith") && (hasHide == false)){
+                        System.out.println(blacksmith);
+                    } else if (mVCommand.equalsIgnoreCase("Talk to Blacksmith") && hasHide == true) {
+                        System.out.println(blacksmithWithHide);
+                        hasHide = false;
+                        hasSword = true;
+                    } else if (mVCommand.equalsIgnoreCase("Go to East")) {
+                        System.out.println(frontYardAgain);
+                        inMV = false;
+                    } else if (mVCommand.equalsIgnoreCase("Go to North")) {
+                        System.out.println("A magic portal teleports you back to your front yard.");
+                        System.out.println(frontYardAgain);
+                        inMV = false;
+                    } else if (mVCommand.equalsIgnoreCase("Where am I?")) {
+                        if (hasLamp && hasSword) {
+                            System.out.println(merchantVillageNoExtras);
+                        } else if (hasLamp) {
+                            System.out.println(merchantVillageNoVagrants);
+                        } else if (hasSword) {
+                            System.out.println(merchantVillageNoSmith);
+                        } else {
+                            System.out.println(merchantVillage);
+                        }
+                    } else {
+                        System.out.println("I don't understand \"" + mVCommand + ".\"");
+                    }
+                }
+            } else if (yardCommand.equalsIgnoreCase("Go To North")) {
                 inYard = false;
             } else if (yardCommand.equalsIgnoreCase("Where Am I")) {
-                System.out.println(frontYard);
+                System.out.println(frontYardAgain);
             } else {
                 System.out.println("I don't understand \"" + yardCommand + ".\"");
             }
