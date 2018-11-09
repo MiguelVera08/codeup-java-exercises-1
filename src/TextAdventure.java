@@ -57,6 +57,13 @@ public class TextAdventure {
         String merchantsWithDog = "You decided to talk to the merchants. They notice your dog, and give it a loving pet. They have no interest in " +
                 "what you have to say, and you cannot understand them.";
         String harbor = "You find yourself at a harbor. Ahead of you, you see a";
+        String coast = "You have come to the coast of the ocean. Sand surrounds your feet. You remember that you hate sand. It's rough " +
+                "coarse, and it gets everywhere... Your path can continue south and west.";
+        String swim = "You decide to go for a swim. A giant shark emerges and looks very hungry. You are his favorite meal. \n    " +
+                "YOUR GAME HAS ENDED. PLEASE RELOAD PROGRAM.";
+        String swimWithDog = "You decide to go for a swim. A giant shark emerges and looks very hungry. Your dog is very eager " +
+                "to protect you. He drags you away from the water, and the shark. Your dog is disappointed in you...";
+
 
 
         boolean hasKnife = false;
@@ -65,6 +72,7 @@ public class TextAdventure {
         boolean hasWool = false;
         boolean hasLamp = false;
         boolean hasSword = false;
+        boolean dogIsDisAp = false;
 
         // The actual Game itself...
 
@@ -192,7 +200,32 @@ public class TextAdventure {
                     }
                 }
             } else if (yardCommand.equalsIgnoreCase("Go To North")) {
-                inYard = false;
+                System.out.println(coast);
+                boolean inCoast = true;
+                while (inCoast) {
+                    System.out.println("Now what?");
+                    String coastCommand = sc.nextLine();
+                    if (coastCommand.equalsIgnoreCase("Go to South")) {
+                        System.out.println(frontYardAgain);
+                        inCoast = false;
+                    } else if (coastCommand.equalsIgnoreCase("Go to West")){
+                        System.out.println("A magic portal teleports you to your front yard...");
+                        inCoast = false;
+                    } else if (coastCommand.equalsIgnoreCase("Swim")) {
+                        if ((hasDog == false) || (dogIsDisAp == true)) {
+                            System.out.println(swim);
+                            inCoast = false;
+                            inYard = false;
+                        } else if (hasDog == true) {
+                            System.out.println(swimWithDog);
+                            dogIsDisAp = true;
+                        }
+                    } else if (coastCommand.equalsIgnoreCase("Where am I")) {
+                        System.out.println(coast);
+                    } else {
+                        System.out.println("I don't understand \"" + coastCommand + ".\"");
+                    }
+                }
             } else if (yardCommand.equalsIgnoreCase("Where Am I")) {
                 System.out.println(frontYardAgain);
             } else {
