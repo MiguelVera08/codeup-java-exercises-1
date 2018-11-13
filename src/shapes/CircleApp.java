@@ -1,8 +1,11 @@
 package shapes;
 
+import util.Input;
+
 public class CircleApp {
     public static void main(String[] args) {
-        Circle fred = new Circle(7);
+        Input in = new Input();
+        Circle fred = new Circle(in.getDouble());
         System.out.println(fred.getArea());
         System.out.println(fred.getRadius());
         fred.setRadius(8.64);

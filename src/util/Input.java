@@ -7,11 +7,11 @@ public class Input {
     private Scanner scanner;
 
     public Input() {
-        System.out.println("Input string...");
          this.scanner = new Scanner(System.in);
     }
 
     public String getString() {
+        System.out.println("Input string...");
         return this.scanner.nextLine();
     }
 

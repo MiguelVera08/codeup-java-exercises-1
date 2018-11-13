@@ -165,6 +165,7 @@ public class TextAdventure {
                 "is not to keen on free rides. He sees your dog and gives it a loving pet. There is no talking to him, for now.";
         String bard = "You decide to talk to the bard. He begins to regale you with tales of your conquests, all made up. You decide to not talk to the bard ever again.";
         String bardAgain = "You remember your promise to yourself. You will never talk to the bard ever again.";
+        String valley = "You find yourself in a valley, with many beautiful flowers. ";
 
         boolean gameOver = false;
         boolean newGame = true;
@@ -657,7 +658,7 @@ public class TextAdventure {
                     } else {
                         System.out.println(infoBroker);
                     }
-                } else if (pubCommand.equalsIgnoreCase("Where Am I?")) {
+                } else if (pubCommand.equalsIgnoreCase("Where Am I")) {
                     if (doorBlocked && brokerFound && hasDressForm) {
                         System.out.println(pubNoArguementNoFigureBroker);
                     } else if (doorBlocked && brokerFound && !hasDressForm) {
@@ -679,6 +680,8 @@ public class TextAdventure {
                     System.out.println("I don't understand \"" + pubCommand + ".\"");
                 }
             }
+
+
         }
     }
 }
