@@ -7,6 +7,7 @@ public class Input {
     private Scanner scanner;
 
     public Input() {
+        System.out.println("Input string...");
          this.scanner = new Scanner(System.in);
     }
 
@@ -15,15 +16,41 @@ public class Input {
     }
 
     public boolean yesNo() {
+        System.out.println("Yes or no?");
         String input = this.scanner.nextLine();
-        if (input.equalsIgnoreCase("No") || input.equalsIgnoreCase("n")) {
-            return false;
-        } else if (input.equalsIgnoreCase("Yes") || input.equalsIgnoreCase("y")) {
-            return true;
-        } else {
-            return yesNo();
+        input = input.toLowerCase();
+        switch(input) {
+            case ("no"):
+                return false;
+            case ("n"):
+                return false;
+            case ("nope"):
+                return false;
+            case ("denied"):
+                return false;
+            case ("uh uh"):
+                return false;
+            case ("yes"):
+                return true;
+            case ("y"):
+                return true;
+            case ("yep"):
+                return true;
+            case ("sure"):
+                return true;
+            case ("si"):
+                return true;
+            case ("uh huh"):
+                return true;
+            case ("approved"):
+                return true;
+            case ("maybe"):
+                System.out.println("Ain't you cute?");
+                return yesNo();
+            default:
+                return yesNo();
+            }
         }
-    }
 
     public int getInteger(int min, int max) {
         int input;
@@ -39,6 +66,7 @@ public class Input {
     }
 
     public int getInt() {
+        System.out.println("Input number...");
         return this.scanner.nextInt();
     }
 
@@ -56,6 +84,7 @@ public class Input {
     }
 
     public double getDouble() {
+        System.out.println("Input number...");
         return this.scanner.nextDouble();
     }
 }
