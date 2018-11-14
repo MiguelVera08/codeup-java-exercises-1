@@ -10,13 +10,17 @@ public class Input {
          this.scanner = new Scanner(System.in);
     }
 
+    public void clear() {
+        this.scanner.nextLine();
+    }
+
     public String getString() {
         System.out.println("Input string...");
         return this.scanner.nextLine();
     }
 
     public boolean yesNo() {
-        System.out.println("Yes or no?");
+        System.out.println("Yes or No?");
         String input = this.scanner.nextLine();
         input = input.toLowerCase();
         switch(input) {
