@@ -165,7 +165,10 @@ public class TextAdventure {
                 "is not to keen on free rides. He sees your dog and gives it a loving pet. There is no talking to him, for now.";
         String bard = "You decide to talk to the bard. He begins to regale you with tales of your conquests, all made up. You decide to not talk to the bard ever again.";
         String bardAgain = "You remember your promise to yourself. You will never talk to the bard ever again.";
-        String valley = "You find yourself in a valley, with many beautiful flowers. ";
+        String valley = "You find yourself in a valley, with many beautiful flowers. You see a goat munching on the flowers. Your path can " +
+                "continue south and north.";
+        String goat = "The goat stops munching on the flowers and backs away from you. Once you are out of site, the goat wanders back and continues " +
+                "to munch on the flowers.";
 
         boolean gameOver = false;
         boolean newGame = true;
@@ -176,6 +179,7 @@ public class TextAdventure {
         boolean inCoast = false;
         boolean inSunvale = false;
         boolean inPub = false;
+        boolean inValley = false;
         boolean hasKnife = false;
         boolean hasDog = false;
         boolean hasHide = false;
@@ -553,8 +557,8 @@ public class TextAdventure {
                 System.out.println("Now what?");
                 String sVCommand = sc.nextLine();
                 if (sVCommand.equalsIgnoreCase("Go to North")) {
-                    System.out.println("END OF DEMO");
-                    gameOver = true;
+                    System.out.println(valley);
+                    inValley = true;
                     inSunvale = false;
                 } else if (sVCommand.equalsIgnoreCase("Go to Pub")) {
                     if (doorBlocked && brokerFound && hasDressForm) {
@@ -681,6 +685,29 @@ public class TextAdventure {
                 }
             }
 
+            while(inValley) {
+                System.out.println("Now what?");
+                String valCommand = sc.nextLine();
+                if (valCommand.equalsIgnoreCase("Go to North")) {
+                    System.out.println("END OF DEMO");
+                    inValley = false;
+                    gameOver = true;
+                } else if (valCommand.equalsIgnoreCase("Go to South")) {
+                    if (sunvaleDiscovered) {
+                        System.out.println(sunvale);
+                    } else {
+                        System.out.println(landFall);
+                    }
+                    inValley = false;
+                    inSunvale = true;
+                } else if (valCommand.equalsIgnoreCase("Search Goat")) {
+                    System.out.println(goat);
+                } else if (valCommand.equalsIgnoreCase("Where am I")) {
+                    System.out.println(valley);
+                } else {
+                    System.out.println("I don't understand \"" + valCommand + ".\"");
+                }
+            }
 
         }
     }
