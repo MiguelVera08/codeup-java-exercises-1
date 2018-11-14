@@ -10,13 +10,17 @@ public class Input {
          this.scanner = new Scanner(System.in);
     }
 
+    public void clear() {
+        this.scanner.nextLine();
+    }
+
     public String getString() {
         System.out.println("Input string...");
         return this.scanner.nextLine();
     }
 
     public boolean yesNo() {
-        System.out.println("Yes or no?");
+        System.out.println("Yes or No?");
         String input = this.scanner.nextLine();
         input = input.toLowerCase();
         switch(input) {
@@ -67,7 +71,13 @@ public class Input {
 
     public int getInt() {
         System.out.println("Input number...");
-        return this.scanner.nextInt();
+        if(!this.scanner.hasNextInt()) {
+            System.out.println("Invalid. Input not an integer. Try again.");
+            this.scanner.nextLine();
+            return getInt();
+        } else {
+            return this.scanner.nextInt();
+        }
     }
 
     public double getDouble(double min, double max) {
@@ -85,6 +95,12 @@ public class Input {
 
     public double getDouble() {
         System.out.println("Input number...");
-        return this.scanner.nextDouble();
+        if(!this.scanner.hasNextDouble()) {
+            System.out.println("Invalid. Input not a double. Try again.");
+            this.scanner.nextLine();
+            return getDouble();
+        } else {
+            return this.scanner.nextDouble();
+        }
     }
 }
