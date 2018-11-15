@@ -50,16 +50,16 @@ public class BattleShip {
             {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "}
     };
 
-    private void placePiece(int num1, int num2) {
-        gameBoard[num1][num2] = "=";
+    private void missShip(int num1, int num2) {
+        gameBoard[num1][num2] = "/";
     }
 
     private static void placeShip(int num1, int num2) {
-        gameBoard[num1][num2] = "<";
+        gameBoard[num1][num2] = "=";
     }
 
     private void shipHit(int num1, int num2) {
-        if (gameBoard[num1][num2].equalsIgnoreCase("<")) {
+        if (gameBoard[num1][num2].equalsIgnoreCase("=")) {
             System.out.println("Ship hit!");
             gameBoard[num1][num2] = "X";
         }
@@ -236,21 +236,222 @@ public class BattleShip {
                         }
                     }
                 }
-            } else if (num == 9 && letter < 8) {
-                if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num + 1].equalsIgnoreCase("<") || gameBoard[letter][num + 2].equalsIgnoreCase("<")){
-                    placeSubmarine();
-                } else {
-                    placeShip(letter, num);
-                    placeShip(letter, num + 1);
-                    placeShip(letter, num + 2);
+            } else if (num == 8 && letter == 9) {
+                boolean undecided = true;
+                while (undecided) {
+                    System.out.println("Would you like to place this piece vertically?");
+                    boolean answer = sc.yesNo();
+                    if (!answer) {
+                        System.out.println("Would you like to place this piece horizontally?");
+                        boolean newAnswer = sc.yesNo();
+                        if (newAnswer) {
+                            if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num - 1].equalsIgnoreCase("<") || gameBoard[letter][num + 1].equalsIgnoreCase("<")){
+                                undecided = false;
+                                placeSubmarine();
+                            } else {
+                                placeShip(letter, num);
+                                placeShip(letter, num - 1);
+                                placeShip(letter, num + 1);
+                                undecided = false;
+                            }
+                        }
+                    } else {
+                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter - 1][num].equalsIgnoreCase("<") || gameBoard[letter - 2][num].equalsIgnoreCase("<")){
+                            undecided = false;
+                            placeSubmarine();
+                        } else {
+                            placeShip(letter, num);
+                            placeShip(letter - 1, num);
+                            placeShip(letter - 2, num);
+                            undecided = false;
+                        }
+                    }
                 }
-            } else if (num < 8 && letter == 9) {
-                if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter + 1][num].equalsIgnoreCase("<") || gameBoard[letter + 2][num].equalsIgnoreCase("<")){
-                    placeSubmarine();
-                } else {
-                    placeShip(letter, num);
-                    placeShip(letter + 1, num);
-                    placeShip(letter + 2, num);
+            } else if (num == 9 && letter == 8) {
+                boolean undecided = true;
+                while (undecided) {
+                    System.out.println("Would you like to place this piece vertically?");
+                    boolean answer = sc.yesNo();
+                    if (!answer) {
+                        System.out.println("Would you like to place this piece horizontally?");
+                        boolean newAnswer = sc.yesNo();
+                        if (newAnswer) {
+                            if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num - 1].equalsIgnoreCase("<") || gameBoard[letter][num - 2].equalsIgnoreCase("<")){
+                                undecided = false;
+                                placeSubmarine();
+                            } else {
+                                placeShip(letter, num);
+                                placeShip(letter, num - 1);
+                                placeShip(letter, num - 2);
+                                undecided = false;
+                            }
+                        }
+                    } else {
+                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter - 1][num].equalsIgnoreCase("<") || gameBoard[letter + 1][num].equalsIgnoreCase("<")){
+                            undecided = false;
+                            placeSubmarine();
+                        } else {
+                            placeShip(letter, num);
+                            placeShip(letter - 1, num);
+                            placeShip(letter + 1, num);
+                            undecided = false;
+                        }
+                    }
+                }
+            } else if (num == 9 && letter < 8){
+                boolean undecided = true;
+                while (undecided) {
+                    System.out.println("Would you like to place this piece vertically?");
+                    boolean answer = sc.yesNo();
+                    if (!answer) {
+                        System.out.println("Would you like to place this piece horizontally?");
+                        boolean newAnswer = sc.yesNo();
+                        if (newAnswer) {
+                            if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num - 1].equalsIgnoreCase("<") || gameBoard[letter][num - 2].equalsIgnoreCase("<")){
+                                undecided = false;
+                                placeSubmarine();
+                            } else {
+                                placeShip(letter, num);
+                                placeShip(letter, num - 1);
+                                placeShip(letter, num - 2);
+                                undecided = false;
+                            }
+                        }
+                    } else {
+                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter + 1][num].equalsIgnoreCase("<") || gameBoard[letter + 2][num].equalsIgnoreCase("<")){
+                            undecided = false;
+                            placeSubmarine();
+                        } else {
+                            placeShip(letter, num);
+                            placeShip(letter + 1, num);
+                            placeShip(letter + 2, num);
+                            undecided = false;
+                        }
+                    }
+                }
+            } else if (num < 8 && letter == 9){
+                boolean undecided = true;
+                while (undecided) {
+                    System.out.println("Would you like to place this piece vertically?");
+                    boolean answer = sc.yesNo();
+                    if (!answer) {
+                        System.out.println("Would you like to place this piece horizontally?");
+                        boolean newAnswer = sc.yesNo();
+                        if (newAnswer) {
+                            if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num + 1].equalsIgnoreCase("<") || gameBoard[letter][num + 2].equalsIgnoreCase("<")){
+                                undecided = false;
+                                placeSubmarine();
+                            } else {
+                                placeShip(letter, num);
+                                placeShip(letter, num + 1);
+                                placeShip(letter, num + 2);
+                                undecided = false;
+                            }
+                        }
+                    } else {
+                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter - 1][num].equalsIgnoreCase("<") || gameBoard[letter - 2][num].equalsIgnoreCase("<")){
+                            undecided = false;
+                            placeSubmarine();
+                        } else {
+                            placeShip(letter, num);
+                            placeShip(letter - 1, num);
+                            placeShip(letter - 2, num);
+                            undecided = false;
+                        }
+                    }
+                }
+            } else if (num == 8 && letter == 8){
+                boolean undecided = true;
+                while (undecided) {
+                    System.out.println("Would you like to place this piece vertically?");
+                    boolean answer = sc.yesNo();
+                    if (!answer) {
+                        System.out.println("Would you like to place this piece horizontally?");
+                        boolean newAnswer = sc.yesNo();
+                        if (newAnswer) {
+                            if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num - 1].equalsIgnoreCase("<") || gameBoard[letter][num + 1].equalsIgnoreCase("<")){
+                                undecided = false;
+                                placeSubmarine();
+                            } else {
+                                placeShip(letter, num);
+                                placeShip(letter, num - 1);
+                                placeShip(letter, num + 1);
+                                undecided = false;
+                            }
+                        }
+                    } else {
+                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter - 1][num].equalsIgnoreCase("<") || gameBoard[letter + 1][num].equalsIgnoreCase("<")){
+                            undecided = false;
+                            placeSubmarine();
+                        } else {
+                            placeShip(letter, num);
+                            placeShip(letter - 1, num);
+                            placeShip(letter + 1, num);
+                            undecided = false;
+                        }
+                    }
+                }
+            } else if (num == 8 && letter < 8){
+                boolean undecided = true;
+                while (undecided) {
+                    System.out.println("Would you like to place this piece vertically?");
+                    boolean answer = sc.yesNo();
+                    if (!answer) {
+                        System.out.println("Would you like to place this piece horizontally?");
+                        boolean newAnswer = sc.yesNo();
+                        if (newAnswer) {
+                            if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num - 1].equalsIgnoreCase("<") || gameBoard[letter][num + 1].equalsIgnoreCase("<")){
+                                undecided = false;
+                                placeSubmarine();
+                            } else {
+                                placeShip(letter, num);
+                                placeShip(letter, num - 1);
+                                placeShip(letter, num + 1);
+                                undecided = false;
+                            }
+                        }
+                    } else {
+                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter - 1][num].equalsIgnoreCase("<") || gameBoard[letter - 2][num].equalsIgnoreCase("<")){
+                            undecided = false;
+                            placeSubmarine();
+                        } else {
+                            placeShip(letter, num);
+                            placeShip(letter - 1, num);
+                            placeShip(letter - 2, num);
+                            undecided = false;
+                        }
+                    }
+                }
+            } else if (num < 8 && letter == 8){
+                boolean undecided = true;
+                while (undecided) {
+                    System.out.println("Would you like to place this piece vertically?");
+                    boolean answer = sc.yesNo();
+                    if (!answer) {
+                        System.out.println("Would you like to place this piece horizontally?");
+                        boolean newAnswer = sc.yesNo();
+                        if (newAnswer) {
+                            if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num - 1].equalsIgnoreCase("<") || gameBoard[letter][num - 2].equalsIgnoreCase("<")){
+                                undecided = false;
+                                placeSubmarine();
+                            } else {
+                                placeShip(letter, num);
+                                placeShip(letter, num - 1);
+                                placeShip(letter, num - 2);
+                                undecided = false;
+                            }
+                        }
+                    } else {
+                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter - 1][num].equalsIgnoreCase("<") || gameBoard[letter + 1][num].equalsIgnoreCase("<")){
+                            undecided = false;
+                            placeSubmarine();
+                        } else {
+                            placeShip(letter, num);
+                            placeShip(letter - 1, num);
+                            placeShip(letter + 1, num);
+                            undecided = false;
+                        }
+                    }
                 }
             } else {
                 boolean undecided = true;
@@ -343,7 +544,7 @@ public class BattleShip {
                         System.out.println("Would you like to place this piece horizontally?");
                         boolean newAnswer = sc.yesNo();
                         if (newAnswer) {
-                            if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num - 1].equalsIgnoreCase("<") || gameBoard[letter][num - 2].equalsIgnoreCase("<")){
+                            if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num - 1].equalsIgnoreCase("<") || gameBoard[letter][num - 2].equalsIgnoreCase("<")) {
                                 undecided = false;
                                 placeCruiser();
                             } else {
@@ -354,7 +555,7 @@ public class BattleShip {
                             }
                         }
                     } else {
-                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter - 1][num].equalsIgnoreCase("<") || gameBoard[letter - 2][num].equalsIgnoreCase("<")){
+                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter - 1][num].equalsIgnoreCase("<") || gameBoard[letter - 2][num].equalsIgnoreCase("<")) {
                             undecided = false;
                             placeCruiser();
                         } else {
@@ -365,21 +566,222 @@ public class BattleShip {
                         }
                     }
                 }
+            } else if (num == 8 && letter == 9) {
+                boolean undecided = true;
+                while (undecided) {
+                    System.out.println("Would you like to place this piece vertically?");
+                    boolean answer = sc.yesNo();
+                    if (!answer) {
+                        System.out.println("Would you like to place this piece horizontally?");
+                        boolean newAnswer = sc.yesNo();
+                        if (newAnswer) {
+                            if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num - 1].equalsIgnoreCase("<") || gameBoard[letter][num + 1].equalsIgnoreCase("<")) {
+                                undecided = false;
+                                placeCruiser();
+                            } else {
+                                placeShip(letter, num);
+                                placeShip(letter, num - 1);
+                                placeShip(letter, num + 1);
+                                undecided = false;
+                            }
+                        }
+                    } else {
+                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter - 1][num].equalsIgnoreCase("<") || gameBoard[letter - 2][num].equalsIgnoreCase("<")) {
+                            undecided = false;
+                            placeCruiser();
+                        } else {
+                            placeShip(letter, num);
+                            placeShip(letter - 1, num);
+                            placeShip(letter - 2, num);
+                            undecided = false;
+                        }
+                    }
+                }
+            } else if (num == 9 && letter == 8) {
+                boolean undecided = true;
+                while (undecided) {
+                    System.out.println("Would you like to place this piece vertically?");
+                    boolean answer = sc.yesNo();
+                    if (!answer) {
+                        System.out.println("Would you like to place this piece horizontally?");
+                        boolean newAnswer = sc.yesNo();
+                        if (newAnswer) {
+                            if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num - 1].equalsIgnoreCase("<") || gameBoard[letter][num - 2].equalsIgnoreCase("<")) {
+                                undecided = false;
+                                placeCruiser();
+                            } else {
+                                placeShip(letter, num);
+                                placeShip(letter, num - 1);
+                                placeShip(letter, num - 2);
+                                undecided = false;
+                            }
+                        }
+                    } else {
+                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter - 1][num].equalsIgnoreCase("<") || gameBoard[letter + 1][num].equalsIgnoreCase("<")) {
+                            undecided = false;
+                            placeCruiser();
+                        } else {
+                            placeShip(letter, num);
+                            placeShip(letter - 1, num);
+                            placeShip(letter + 1, num);
+                            undecided = false;
+                        }
+                    }
+                }
             } else if (num == 9 && letter < 8) {
-                if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num + 1].equalsIgnoreCase("<") || gameBoard[letter][num + 2].equalsIgnoreCase("<")){
-                    placeCruiser();
-                } else {
-                    placeShip(letter, num);
-                    placeShip(letter, num + 1);
-                    placeShip(letter, num + 2);
+                boolean undecided = true;
+                while (undecided) {
+                    System.out.println("Would you like to place this piece vertically?");
+                    boolean answer = sc.yesNo();
+                    if (!answer) {
+                        System.out.println("Would you like to place this piece horizontally?");
+                        boolean newAnswer = sc.yesNo();
+                        if (newAnswer) {
+                            if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num - 1].equalsIgnoreCase("<") || gameBoard[letter][num - 2].equalsIgnoreCase("<")) {
+                                undecided = false;
+                                placeCruiser();
+                            } else {
+                                placeShip(letter, num);
+                                placeShip(letter, num - 1);
+                                placeShip(letter, num - 2);
+                                undecided = false;
+                            }
+                        }
+                    } else {
+                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter + 1][num].equalsIgnoreCase("<") || gameBoard[letter + 2][num].equalsIgnoreCase("<")) {
+                            undecided = false;
+                            placeCruiser();
+                        } else {
+                            placeShip(letter, num);
+                            placeShip(letter + 1, num);
+                            placeShip(letter + 2, num);
+                            undecided = false;
+                        }
+                    }
                 }
             } else if (num < 8 && letter == 9) {
-                if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter + 1][num].equalsIgnoreCase("<") || gameBoard[letter + 2][num].equalsIgnoreCase("<")){
-                    placeCruiser();
-                } else {
-                    placeShip(letter, num);
-                    placeShip(letter + 1, num);
-                    placeShip(letter + 2, num);
+                boolean undecided = true;
+                while (undecided) {
+                    System.out.println("Would you like to place this piece vertically?");
+                    boolean answer = sc.yesNo();
+                    if (!answer) {
+                        System.out.println("Would you like to place this piece horizontally?");
+                        boolean newAnswer = sc.yesNo();
+                        if (newAnswer) {
+                            if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num + 1].equalsIgnoreCase("<") || gameBoard[letter][num + 2].equalsIgnoreCase("<")) {
+                                undecided = false;
+                                placeCruiser();
+                            } else {
+                                placeShip(letter, num);
+                                placeShip(letter, num + 1);
+                                placeShip(letter, num + 2);
+                                undecided = false;
+                            }
+                        }
+                    } else {
+                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter - 1][num].equalsIgnoreCase("<") || gameBoard[letter - 2][num].equalsIgnoreCase("<")) {
+                            undecided = false;
+                            placeCruiser();
+                        } else {
+                            placeShip(letter, num);
+                            placeShip(letter - 1, num);
+                            placeShip(letter - 2, num);
+                            undecided = false;
+                        }
+                    }
+                }
+            } else if (num == 8 && letter == 8) {
+                boolean undecided = true;
+                while (undecided) {
+                    System.out.println("Would you like to place this piece vertically?");
+                    boolean answer = sc.yesNo();
+                    if (!answer) {
+                        System.out.println("Would you like to place this piece horizontally?");
+                        boolean newAnswer = sc.yesNo();
+                        if (newAnswer) {
+                            if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num - 1].equalsIgnoreCase("<") || gameBoard[letter][num + 1].equalsIgnoreCase("<")) {
+                                undecided = false;
+                                placeCruiser();
+                            } else {
+                                placeShip(letter, num);
+                                placeShip(letter, num - 1);
+                                placeShip(letter, num + 1);
+                                undecided = false;
+                            }
+                        }
+                    } else {
+                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter - 1][num].equalsIgnoreCase("<") || gameBoard[letter + 1][num].equalsIgnoreCase("<")) {
+                            undecided = false;
+                            placeCruiser();
+                        } else {
+                            placeShip(letter, num);
+                            placeShip(letter - 1, num);
+                            placeShip(letter + 1, num);
+                            undecided = false;
+                        }
+                    }
+                }
+            } else if (num == 8 && letter < 8) {
+                boolean undecided = true;
+                while (undecided) {
+                    System.out.println("Would you like to place this piece vertically?");
+                    boolean answer = sc.yesNo();
+                    if (!answer) {
+                        System.out.println("Would you like to place this piece horizontally?");
+                        boolean newAnswer = sc.yesNo();
+                        if (newAnswer) {
+                            if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num - 1].equalsIgnoreCase("<") || gameBoard[letter][num + 1].equalsIgnoreCase("<")) {
+                                undecided = false;
+                                placeCruiser();
+                            } else {
+                                placeShip(letter, num);
+                                placeShip(letter, num - 1);
+                                placeShip(letter, num + 1);
+                                undecided = false;
+                            }
+                        }
+                    } else {
+                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter - 1][num].equalsIgnoreCase("<") || gameBoard[letter - 2][num].equalsIgnoreCase("<")) {
+                            undecided = false;
+                            placeCruiser();
+                        } else {
+                            placeShip(letter, num);
+                            placeShip(letter - 1, num);
+                            placeShip(letter - 2, num);
+                            undecided = false;
+                        }
+                    }
+                }
+            } else if (num < 8 && letter == 8) {
+                boolean undecided = true;
+                while (undecided) {
+                    System.out.println("Would you like to place this piece vertically?");
+                    boolean answer = sc.yesNo();
+                    if (!answer) {
+                        System.out.println("Would you like to place this piece horizontally?");
+                        boolean newAnswer = sc.yesNo();
+                        if (newAnswer) {
+                            if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num - 1].equalsIgnoreCase("<") || gameBoard[letter][num - 2].equalsIgnoreCase("<")) {
+                                undecided = false;
+                                placeCruiser();
+                            } else {
+                                placeShip(letter, num);
+                                placeShip(letter, num - 1);
+                                placeShip(letter, num - 2);
+                                undecided = false;
+                            }
+                        }
+                    } else {
+                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter - 1][num].equalsIgnoreCase("<") || gameBoard[letter + 1][num].equalsIgnoreCase("<")) {
+                            undecided = false;
+                            placeCruiser();
+                        } else {
+                            placeShip(letter, num);
+                            placeShip(letter - 1, num);
+                            placeShip(letter + 1, num);
+                            undecided = false;
+                        }
+                    }
                 }
             } else {
                 boolean undecided = true;
@@ -401,7 +803,7 @@ public class BattleShip {
                             }
                         }
                     } else {
-                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter + 1][num].equalsIgnoreCase("<") || gameBoard[letter + 2][num].equalsIgnoreCase("<")){
+                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter + 1][num].equalsIgnoreCase("<") || gameBoard[letter + 2][num].equalsIgnoreCase("<")) {
                             undecided = false;
                             placeCruiser();
                         } else {
