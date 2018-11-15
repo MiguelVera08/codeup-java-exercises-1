@@ -1,7 +1,7 @@
-import java.util.Scanner;
+import util.Input;
 
 public class BattleShip {
-    private Scanner sc = new Scanner(System.in);
+    private static Input sc = new Input();
 
     public int oneOrTwo() {
         return (int) (Math.random() * 1) + 1;
@@ -37,5 +37,408 @@ public class BattleShip {
         }
     }
 
+    private static String [][] gameBoard = {
+            {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+            {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+            {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+            {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+            {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+            {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+            {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+            {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+            {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+            {" ", " ", " ", " ", " ", " ", " ", " ", " ", " "}
+    };
+
+    private void placePiece(int num1, int num2) {
+        gameBoard[num1][num2] = "=";
+    }
+
+    private static void placeShip(int num1, int num2) {
+        gameBoard[num1][num2] = "<";
+    }
+
+    private void shipHit(int num1, int num2) {
+        if (gameBoard[num1][num2].equalsIgnoreCase("<")) {
+            System.out.println("Ship hit!");
+            gameBoard[num1][num2] = "X";
+        }
+    }
+
+    private static void placeDestroyer() {
+        System.out.println("Input a letter (a-j) and a number (1-10) to place Destroyer.");
+            String coordinates = sc.getString().toLowerCase();
+            int letter = 0;
+            int num;
+            if (coordinates.length() == 3) {
+                num = Integer.parseInt(coordinates.substring(1, 3));
+            } else {
+                num = Integer.parseInt(coordinates.substring(1, 2));
+            }
+            num -= 1;
+            if (num <= 10) {
+                switch (coordinates.substring(0, 1)) {
+                    case ("a"):
+                        break;
+                    case ("b"):
+                        letter = 1;
+                        break;
+                    case ("c"):
+                        letter = 2;
+                        break;
+                    case ("d"):
+                        letter = 3;
+                        break;
+                    case ("e"):
+                        letter = 4;
+                        break;
+                    case ("f"):
+                        letter = 5;
+                        break;
+                    case ("g"):
+                        letter = 6;
+                        break;
+                    case ("h"):
+                        letter = 7;
+                        break;
+                    case ("i"):
+                        letter = 8;
+                        break;
+                    case ("j"):
+                        letter = 9;
+                        break;
+                    default:
+                        placeDestroyer();
+                }
+                if (num == 9 && letter == 9) {
+                    boolean undecided = true;
+                    while (undecided) {
+                        System.out.println("Would you like to place this piece vertically?");
+                        boolean answer = sc.yesNo();
+                        if (!answer) {
+                            System.out.println("Would you like to place this piece horizontally?");
+                            boolean newAnswer = sc.yesNo();
+                            if (newAnswer) {
+                                placeShip(letter, num);
+                                placeShip(letter, num - 1);
+                                undecided = false;
+                            }
+                        } else {
+                            placeShip(letter, num);
+                            placeShip(letter - 1, num);
+                            undecided = false;
+                        }
+                    }
+                } else if (num < 9 && letter == 9) {
+                    placeShip(letter, num);
+                    placeShip(letter, num + 1);
+                } else if (num == 9 && letter < 9) {
+                    placeShip(letter, num);
+                    placeShip(letter + 1, num);
+                } else {
+                    boolean undecided = true;
+                    while (undecided) {
+                        System.out.println("Would you like to place this piece vertically?");
+                        boolean answer = sc.yesNo();
+                        if (!answer) {
+                            System.out.println("Would you like to place this piece horizontally?");
+                            boolean newAnswer = sc.yesNo();
+                            if (newAnswer) {
+                                placeShip(letter, num);
+                                placeShip(letter, num + 1);
+                                undecided = false;
+                            }
+                        } else {
+                            placeShip(letter, num);
+                            placeShip(letter + 1, num);
+                            undecided = false;
+                        }
+                    }
+                }
+            } else {
+                placeDestroyer();
+            }
+    }
+
+    private static void placeSubmarine() {
+        System.out.println("Input a letter (a-j) and a number (1-10) to place Submarine.");
+        String coordinates = sc.getString().toLowerCase();
+        int letter = 0;
+        int num;
+        if (coordinates.length() == 3) {
+            num = Integer.parseInt(coordinates.substring(1, 3));
+        } else {
+            num = Integer.parseInt(coordinates.substring(1, 2));
+        }
+        num -= 1;
+        if (num <= 10) {
+            switch (coordinates.substring(0, 1)) {
+                case ("a"):
+                    break;
+                case ("b"):
+                    letter = 1;
+                    break;
+                case ("c"):
+                    letter = 2;
+                    break;
+                case ("d"):
+                    letter = 3;
+                    break;
+                case ("e"):
+                    letter = 4;
+                    break;
+                case ("f"):
+                    letter = 5;
+                    break;
+                case ("g"):
+                    letter = 6;
+                    break;
+                case ("h"):
+                    letter = 7;
+                    break;
+                case ("i"):
+                    letter = 8;
+                    break;
+                case ("j"):
+                    letter = 9;
+                    break;
+                default:
+                    placeSubmarine();
+            }
+            if (num == 9 && letter == 9) {
+                boolean undecided = true;
+                while (undecided) {
+                    System.out.println("Would you like to place this piece vertically?");
+                    boolean answer = sc.yesNo();
+                    if (!answer) {
+                        System.out.println("Would you like to place this piece horizontally?");
+                        boolean newAnswer = sc.yesNo();
+                        if (newAnswer) {
+                            if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num - 1].equalsIgnoreCase("<") || gameBoard[letter][num - 2].equalsIgnoreCase("<")){
+                                undecided = false;
+                                placeSubmarine();
+                            } else {
+                                placeShip(letter, num);
+                                placeShip(letter, num - 1);
+                                placeShip(letter, num - 2);
+                                undecided = false;
+                            }
+                        }
+                    } else {
+                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter - 1][num].equalsIgnoreCase("<") || gameBoard[letter - 2][num].equalsIgnoreCase("<")){
+                            undecided = false;
+                            placeSubmarine();
+                        } else {
+                            placeShip(letter, num);
+                            placeShip(letter - 1, num);
+                            placeShip(letter - 2, num);
+                            undecided = false;
+                        }
+                    }
+                }
+            } else if (num == 9 && letter < 8) {
+                if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num + 1].equalsIgnoreCase("<") || gameBoard[letter][num + 2].equalsIgnoreCase("<")){
+                    placeSubmarine();
+                } else {
+                    placeShip(letter, num);
+                    placeShip(letter, num + 1);
+                    placeShip(letter, num + 2);
+                }
+            } else if (num < 8 && letter == 9) {
+                if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter + 1][num].equalsIgnoreCase("<") || gameBoard[letter + 2][num].equalsIgnoreCase("<")){
+                    placeSubmarine();
+                } else {
+                    placeShip(letter, num);
+                    placeShip(letter + 1, num);
+                    placeShip(letter + 2, num);
+                }
+            } else {
+                boolean undecided = true;
+                while (undecided) {
+                    System.out.println("Would you like to place this piece vertically?");
+                    boolean answer = sc.yesNo();
+                    if (!answer) {
+                        System.out.println("Would you like to place this piece horizontally?");
+                        boolean newAnswer = sc.yesNo();
+                        if (newAnswer) {
+                            if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num + 1].equalsIgnoreCase("<") || gameBoard[letter][num + 2].equalsIgnoreCase("<")) {
+                                undecided = false;
+                                placeSubmarine();
+                            } else {
+                                placeShip(letter, num);
+                                placeShip(letter, num + 1);
+                                placeShip(letter, num + 2);
+                                undecided = false;
+                            }
+                        }
+                    } else {
+                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter + 1][num].equalsIgnoreCase("<") || gameBoard[letter + 2][num].equalsIgnoreCase("<")){
+                            undecided = false;
+                            placeSubmarine();
+                        } else {
+                            placeShip(letter, num);
+                            placeShip(letter + 1, num);
+                            placeShip(letter + 2, num);
+                            undecided = false;
+                        }
+                    }
+                }
+            }
+        } else {
+            placeSubmarine();
+        }
+    }
+
+    private static void placeCruiser() {
+        System.out.println("Input a letter (a-j) and a number (1-10) to place Cruiser.");
+        String coordinates = sc.getString().toLowerCase();
+        int letter = 0;
+        int num;
+        if (coordinates.length() == 3) {
+            num = Integer.parseInt(coordinates.substring(1, 3));
+        } else {
+            num = Integer.parseInt(coordinates.substring(1, 2));
+        }
+        num -= 1;
+        if (num <= 10) {
+            switch (coordinates.substring(0, 1)) {
+                case ("a"):
+                    break;
+                case ("b"):
+                    letter = 1;
+                    break;
+                case ("c"):
+                    letter = 2;
+                    break;
+                case ("d"):
+                    letter = 3;
+                    break;
+                case ("e"):
+                    letter = 4;
+                    break;
+                case ("f"):
+                    letter = 5;
+                    break;
+                case ("g"):
+                    letter = 6;
+                    break;
+                case ("h"):
+                    letter = 7;
+                    break;
+                case ("i"):
+                    letter = 8;
+                    break;
+                case ("j"):
+                    letter = 9;
+                    break;
+                default:
+                    placeCruiser();
+            }
+            if (num == 9 && letter == 9) {
+                boolean undecided = true;
+                while (undecided) {
+                    System.out.println("Would you like to place this piece vertically?");
+                    boolean answer = sc.yesNo();
+                    if (!answer) {
+                        System.out.println("Would you like to place this piece horizontally?");
+                        boolean newAnswer = sc.yesNo();
+                        if (newAnswer) {
+                            if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num - 1].equalsIgnoreCase("<") || gameBoard[letter][num - 2].equalsIgnoreCase("<")){
+                                undecided = false;
+                                placeCruiser();
+                            } else {
+                                placeShip(letter, num);
+                                placeShip(letter, num - 1);
+                                placeShip(letter, num - 2);
+                                undecided = false;
+                            }
+                        }
+                    } else {
+                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter - 1][num].equalsIgnoreCase("<") || gameBoard[letter - 2][num].equalsIgnoreCase("<")){
+                            undecided = false;
+                            placeCruiser();
+                        } else {
+                            placeShip(letter, num);
+                            placeShip(letter - 1, num);
+                            placeShip(letter - 2, num);
+                            undecided = false;
+                        }
+                    }
+                }
+            } else if (num == 9 && letter < 8) {
+                if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num + 1].equalsIgnoreCase("<") || gameBoard[letter][num + 2].equalsIgnoreCase("<")){
+                    placeCruiser();
+                } else {
+                    placeShip(letter, num);
+                    placeShip(letter, num + 1);
+                    placeShip(letter, num + 2);
+                }
+            } else if (num < 8 && letter == 9) {
+                if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter + 1][num].equalsIgnoreCase("<") || gameBoard[letter + 2][num].equalsIgnoreCase("<")){
+                    placeCruiser();
+                } else {
+                    placeShip(letter, num);
+                    placeShip(letter + 1, num);
+                    placeShip(letter + 2, num);
+                }
+            } else {
+                boolean undecided = true;
+                while (undecided) {
+                    System.out.println("Would you like to place this piece vertically?");
+                    boolean answer = sc.yesNo();
+                    if (!answer) {
+                        System.out.println("Would you like to place this piece horizontally?");
+                        boolean newAnswer = sc.yesNo();
+                        if (newAnswer) {
+                            if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter][num + 1].equalsIgnoreCase("<") || gameBoard[letter][num + 2].equalsIgnoreCase("<")) {
+                                undecided = false;
+                                placeCruiser();
+                            } else {
+                                placeShip(letter, num);
+                                placeShip(letter, num + 1);
+                                placeShip(letter, num + 2);
+                                undecided = false;
+                            }
+                        }
+                    } else {
+                        if (gameBoard[letter][num].equalsIgnoreCase("<") || gameBoard[letter + 1][num].equalsIgnoreCase("<") || gameBoard[letter + 2][num].equalsIgnoreCase("<")){
+                            undecided = false;
+                            placeCruiser();
+                        } else {
+                            placeShip(letter, num);
+                            placeShip(letter + 1, num);
+                            placeShip(letter + 2, num);
+                            undecided = false;
+                        }
+                    }
+                }
+            }
+        } else {
+            placeCruiser();
+        }
+    }
+
+    public static void buildBoard() {
+        for (int i = 0; i < gameBoard.length;i++) {
+            if (i == 0) {
+                System.out.println("+===~~~---** Player's  Board **---~~~===+");
+            } else {
+                System.out.println("+===~~~---**---**~~~*~~~**---**---~~~===+");
+            }
+            System.out.print("| ");
+            for (String field : gameBoard [i]) {
+                System.out.print(field + " | ");
+            }
+            System.out.println();
+        }
+        System.out.println("+===~~~---**---**~~~*~~~**---**---~~~===+");
+    }
+
+    public static void main(String[] args) {
+        placeDestroyer();
+        placeSubmarine();
+        placeCruiser();
+        buildBoard();
+    }
 
 }
