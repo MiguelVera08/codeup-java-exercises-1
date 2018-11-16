@@ -16,10 +16,10 @@ public class EightSix extends Car {
     }
 
     public void makeAutomatic() {
-        if (!this.model.equalsIgnoreCase("86 TRD")) {
+        if (!this.model.equalsIgnoreCase("86 TRD Edition")) {
             this.isManual = false;
         } else {
-            System.out.println("86 TRD must be manual!");
+            System.out.println("86 TRD Edition must be manual!");
         }
     }
 
@@ -38,7 +38,7 @@ public class EightSix extends Car {
     }
 
     public void makeTRD() {
-        this.model = "86 TRD";
+        this.model = "86 TRD Edition";
         this.isManual = true;
         this.mpgCity = 21;
         this.mpgHwy = 28;
@@ -71,5 +71,9 @@ public class EightSix extends Car {
 
     public int getPriceBase() {
         return priceBase;
+    }
+
+    public void leatherSeats() {
+        this.priceBase += 450;
     }
 }

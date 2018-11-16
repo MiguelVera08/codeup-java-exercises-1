@@ -1,6 +1,9 @@
 package toyota;
 
-public class Car {
+import util.Input;
+
+public abstract class Car {
+    Input sc = new Input();
     protected String model;
     protected String carType;
     protected boolean isHybrid;
@@ -9,9 +12,7 @@ public class Car {
     protected int mpgHwy;
     protected int priceBase;
 
-    public void leatherSeats() {
-        this.priceBase = this.priceBase + 450;
-    }
+    public abstract void leatherSeats();
 
     public String honkHorn() {
         return "Honk HONK!";
@@ -19,15 +20,18 @@ public class Car {
 
     protected Car() { }
 
-    public Car(String model, String carType, boolean isHybrid, boolean isManual, int mpgCity, int mpgHwy, int priceBase) {
-        this.model = model;
-        this.carType = carType;
-        this.isHybrid = isHybrid;
-        this.isManual = isManual;
-        this.mpgCity = mpgCity;
-        this.mpgHwy = mpgHwy;
-        this.priceBase = priceBase;
-    }
+    public abstract String getModel();
 
+    public abstract String getCarType();
+
+    public abstract boolean isHybrid();
+
+    public abstract boolean isManual();
+
+    public abstract int getMpgCity();
+
+    public abstract int getMpgHwy();
+
+    public abstract int getPriceBase();
 
 }
