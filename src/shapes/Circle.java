@@ -1,6 +1,6 @@
 package shapes;
 
-public class Circle {
+public class Circle extends Shape implements Measurable {
     private double radius;
 
     public Circle() {}
@@ -17,8 +17,12 @@ public class Circle {
         this.radius = radius;
     }
 
-    public double getCircumference(){
+    public double getPerimeter(){
         return this.radius * Math.PI * 2;
+    }
+
+    public double getCircumference() {
+        return this.getPerimeter();
     }
 
     public double getArea() {
