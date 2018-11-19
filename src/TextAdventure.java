@@ -160,14 +160,13 @@ public class TextAdventure {
         String pubBroker = "You are now in a pub. Inside there are many loud and frankly, bit rude customers. The loud shouts of an argument " +
                 "can be heard. There is the bartender, an information broker, and a shadowy figure in the corner of the pub. You may leave through the door.";
         String ferrymanAfterRide = "You go to talk to the ferryman, but it turns out you are talking to his twin brother. Your ferryman was arrested for tax evasion. The new ferryman " +
-                "is not to keen on free rides. There is no talking to him, for now.";
+                "is not too keen on free rides. There is no talking to him, for now.";
         String ferrymanAfterRideDog = "You go to talk to the ferryman, but it turns out you are talking to his twin brother. Your ferryman was arrested for tax evasion. The new ferryman " +
-                "is not to keen on free rides. He sees your dog and gives it a loving pet. There is no talking to him, for now.";
+                "is not too keen on free rides. He sees your dog and gives it a loving pet. There is no talking to him, for now.";
         String bard = "You decide to talk to the bard. He begins to regale you with tales of your conquests, all made up. You decide to not talk to the bard ever again.";
         String bardAgain = "You remember your promise to yourself. You will never talk to the bard ever again.";
-        String valley = "You find yourself in a valley, with many beautiful flowers. You see a goat munching on the flowers. Your path can " +
-                "continue south and north.";
-        String goat = "The goat stops munching on the flowers and backs away from you. Once you are out of site, the goat wanders back and continues " +
+        String valley = "You find yourself in a valley, with many beautiful flowers. You see a goat munching on the flowers. Your path can continue south and north.";
+        String goat = "The goat stops munching on the flowers and backs away from you. Once you are out of sight, the goat wanders back and continues " +
                 "to munch on the flowers.";
 
         boolean gameOver = false;

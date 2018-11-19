@@ -3,6 +3,7 @@ package grades;
 import util.Input;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -107,6 +108,8 @@ public class GradesApplication {
         for (String userName : students.keySet()) {
             keys.add(userName);
         }
+
+        Collections.sort(keys);
 
         boolean running = true;
 
