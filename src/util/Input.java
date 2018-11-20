@@ -120,7 +120,7 @@ public class Input {
     }
 
     public long getHex() {
-        System.out.println("Input number");
+        System.out.println("Input hexadecimal number");
         while (true) {
             try {
                 return Long.valueOf(scanner.next(), 16);
@@ -131,7 +131,7 @@ public class Input {
     }
 
     public long getBinary() {
-        System.out.println("Input number");
+        System.out.println("Input binary number");
         while (true) {
             try {
                 return Long.valueOf(scanner.next(), 2);

@@ -168,6 +168,31 @@ public class TextAdventure {
         String valley = "You find yourself in a valley, with many beautiful flowers. You see a goat munching on the flowers. Your path can continue south and north.";
         String goat = "The goat stops munching on the flowers and backs away from you. Once you are out of sight, the goat wanders back and continues " +
                 "to munch on the flowers.";
+        String fork = "You have reached a three-pronged fork in the road. You see a sign posted as well as an old woman. You path can continue north, east, south, and west.";
+        String signPost = "You walk up to the sign. It has three different arrows, each pointing to a city. The one headed east is pointing to Hooverdale, the north to Blackridge, and west to Spur's Village.";
+        String oldWoman = "You approach the old woman. She seems a bit confused. She asks if you know the way to Bilgarden. You do not know how to get there. The woman turns away, back to the sign, and she looks at it puzzled.";
+        String hooverDale = "You are now at Hooverdale. It is a quite mountain town. There is a blacksmith, a shadowy figure, and a bard. You path can continue north and west.";
+        String forest = "You find yourself in a forest. The forest is fairly dark and densely populated with many woodland creatures. You see a twig, a squirrel, and a rabbit. You path can continue north, east, south, and west, however only north and south have a pathway to walk on...";
+        String westForest = "You decide, unforunately, to go west. There is nothing to be found here however. The darkness encircles you this day...\n    YOUR GAME HAS ENDED. PLEASE RELOAD PROGRAM.";
+        String eastForest = "You decide to go east. You find a small chest.\n    OPEN CHEST?";
+        String chestNoKey = "You lack the key to open this chest...";
+        String forestChest = "Using your key, you unlock the chest to find a pair of goggles. When you remove the key, it snaps in half.\n    KEY LOST.\n    GET GOGGLES.";
+        String blackRidge = "You find yourself in the frosted village of Blackridge. Despite the name it is very bright and white. You find it difficult to see much of anything here. Your path can continue south.";
+        String blackRidgeGoggs = "You find yourself in the frosted village of Blackridge. Despite the name it is very bright and white. Putting on your goggles you can see the town. There is a pub here, and very few people outside. You see a bard. Your path can continue east and south.";
+        String spurs = "You find yourself in a very small village known as Spur's Village. There is a young woman, and a cat. Your path can continue east, south, and west.";
+        String spursNoCat = "You find yourself in a very small village known as Spur's Village. There is a young woman. Your path can continue east, south, and west.";
+        String yWoman = "You decide to talk to the young woman. She can smell death on you. She refuses to talk to you.";
+        String yWomanDog = "You decide to talk to the young woman. She notices your dog and gives it a loving pet. She can smell death on you. She refuses to talk to you.";
+        String cat = "You approach the cat and as you do, you notice that this is actually your cat. It notices you after you call to it and walks over, unaware of any wrong doing on its part. It is happy to see you though.\n    CAT HAS JOINED PARTY";
+        String lake = "You find yourself at Spur's Lake. It is said to have some kind of healing properties for those that bath in it. Your path can continue north.";
+        String batheLake = "You decide to take this opportunity to bathe in Spur's lake. You don't really feel healed persay, but hey, atleast you're clean!";
+        String yWomanBath = "You decide to talk to the young woman. She is very sorry to hear of your loss, and invites you to her restaurant, Bilgarden. The food is very nice, and helps to ease many of your aches from the journey so far.";
+        String bilgarden = "You remember the old woman at the fork who had asked about Bilgarden...";
+        String oldWomanBilgarden = "You approach the old woman. She seems a bit confused. She asks if you know the way to Bilgarden. You inform her that the restaurant is in Spur's Village. Overjoyed, she hands you a canteen. It is empty, but better than nothing!\n    GET CANTEEN.";
+        String fillCanteen = "You decide to fill your canteen with water from Spur's Lake.\n    CANTEEN FULL.";
+        String swimLake = "You decided to go swimming in the lake. Your decision to go for a swim is rewarded when you notice a glimmer in the lake bed. Swimming down to it, you retrieve the item.\n    GET KEY.";
+
+
 
         boolean gameOver = false;
         boolean newGame = true;
@@ -179,6 +204,12 @@ public class TextAdventure {
         boolean inSunvale = false;
         boolean inPub = false;
         boolean inValley = false;
+        boolean inFork = false;
+        boolean inHDale = false;
+        boolean inForest = false;
+        boolean inBRidge = false;
+        boolean inSVill = false;
+        boolean inSLake = false;
         boolean hasKnife = false;
         boolean hasDog = false;
         boolean hasHide = false;
@@ -186,6 +217,14 @@ public class TextAdventure {
         boolean hasLamp = false;
         boolean hasSword = false;
         boolean hasDressForm = false;
+        boolean hasCat = false;
+        boolean hasKey = false;
+        boolean hasGoggles = false;
+        boolean hasCanteen = false;
+        boolean filledCanteen = false;
+        boolean hasBathed = false;
+        boolean talkedToOldWoman = false;
+        boolean knowBilgarden = false;
         boolean dogIsDisAp = false;
         boolean builtSandCastle = false;
         boolean destroyedSandCastle = false;
@@ -198,7 +237,6 @@ public class TextAdventure {
         boolean talkedToTheBard = false;
 
         // The actual Game itself...
-
 
         while (!gameOver) {
             if (newGame) {
@@ -477,8 +515,12 @@ public class TextAdventure {
                 System.out.println("Now what?");
                 String yardCommand = sc.nextLine();
                 if (yardCommand.equalsIgnoreCase("Search Dog")) {
-                    System.out.println(dog);
-                    hasDog = true;
+                    if (!hasDog) {
+                        System.out.println(dog);
+                        hasDog = true;
+                    } else {
+                        System.out.println("Dog already in party...");
+                    }
                 } else if (yardCommand.equalsIgnoreCase("Search Cow") && hasKnife == false) {
                     System.out.println(cow);
                 } else if (yardCommand.equalsIgnoreCase("Search Cow") && hasKnife == true) {
@@ -688,9 +730,9 @@ public class TextAdventure {
                 System.out.println("Now what?");
                 String valCommand = sc.nextLine();
                 if (valCommand.equalsIgnoreCase("Go to North")) {
-                    System.out.println("END OF DEMO");
+                    System.out.println(fork);
                     inValley = false;
-                    gameOver = true;
+                    inFork = true;
                 } else if (valCommand.equalsIgnoreCase("Go to South")) {
                     if (sunvaleDiscovered) {
                         System.out.println(sunvale);
@@ -705,6 +747,197 @@ public class TextAdventure {
                     System.out.println(valley);
                 } else {
                     System.out.println("I don't understand \"" + valCommand + ".\"");
+                }
+            }
+
+            while (inFork) {
+                System.out.println("Now what?");
+                String forkCommand = sc.nextLine();
+                if (forkCommand.equalsIgnoreCase("Go to South")) {
+                    System.out.println(valley);
+                    inFork = false;
+                    inValley = true;
+                } else if (forkCommand.equalsIgnoreCase("Go to East")) {
+                    System.out.println(hooverDale);
+                    inFork = false;
+                    inHDale = true;
+                } else if (forkCommand.equalsIgnoreCase("Go to North")) {
+                    System.out.println(forest);
+                    inFork = false;
+                    inForest = true;
+                } else if (forkCommand.equalsIgnoreCase("Go to West")) {
+                    if (!hasCat) {
+                        System.out.println(spurs);
+                    } else {
+                        System.out.println(spursNoCat);
+                    }
+                    inFork = false;
+                    inSVill = true;
+                } else if (forkCommand.equalsIgnoreCase("Talk to Old Woman")) {
+                    if (knowBilgarden) {
+                        System.out.println(oldWomanBilgarden);
+                        hasCanteen = true;
+                    } else {
+                        System.out.println(oldWoman);
+                    }
+                } else if (forkCommand.equalsIgnoreCase("Search Sign")) {
+                    System.out.println(signPost);
+                } else if (forkCommand.equalsIgnoreCase("Where Am I")) {
+                    System.out.println(fork);
+                } else {
+                    System.out.println("I don't understand \"" + forkCommand + ".\"");
+                }
+            }
+
+            while(inForest) {
+                System.out.println("Now what?");
+                String forestCommand = sc.nextLine();
+                if (forestCommand.equalsIgnoreCase("Go to North")) {
+                    if (hasGoggles) {
+                        System.out.println(blackRidgeGoggs);
+                    } else {
+                        System.out.println(blackRidge);
+                    }
+                    inForest = false;
+                    inBRidge = true;
+                } else if (forestCommand.equalsIgnoreCase("Go to East")) {
+                    if (!hasGoggles) {
+                        System.out.println(eastForest);
+                        String answer = sc.nextLine();
+                        if (answer.equalsIgnoreCase("yes")) {
+                            if (hasKey) {
+                                System.out.println(forestChest);
+                                hasKey = false;
+                                hasGoggles = true;
+                            } else {
+                                System.out.println(chestNoKey);
+                            }
+                        } else {
+                            System.out.println("You back away from the chest and return to the path.");
+                        }
+                    } else {
+                        System.out.println("You turn to walk to the east, but the trees are too thick to walk through.");
+                    }
+                } else if (forestCommand.equalsIgnoreCase("Go to West")) {
+                    System.out.println(westForest);
+                    inForest = false;
+                    gameOver = true;
+                } else if (forestCommand.equalsIgnoreCase("Go to South")) {
+                    System.out.println(fork);
+                    inForest = false;
+                    inFork = true;
+                } else if (forestCommand.equalsIgnoreCase("Where am I")) {
+                    System.out.println(forest);
+                } else {
+                    System.out.println("I don't understand \"" + forestCommand + ".\"");
+                }
+            }
+
+            while (inBRidge) {
+                System.out.println("Now what?");
+                String bRCommand = sc.nextLine();
+                if (bRCommand.equalsIgnoreCase("Go to South")) {
+                    System.out.println(forest);
+                    inBRidge = false;
+                    inForest = true;
+                } else if (bRCommand.equalsIgnoreCase("Go to East")) {
+                    if (hasGoggles) {
+                        System.out.println("END OF DEMO");
+                        inBRidge = false;
+                        gameOver = true;
+                    } else {
+                        System.out.println("It is impossible to see where you are going.");
+                    }
+                } else if (!hasGoggles && (bRCommand.equalsIgnoreCase("Go to North") || bRCommand.equalsIgnoreCase("Go to West"))) {
+                    System.out.println("It is impossible to see where you are going.");
+                }  else if (bRCommand.equalsIgnoreCase("Go to Pub") && hasGoggles) {
+                    System.out.println("END OF DEMO");
+                    inBRidge = false;
+                    gameOver = true;
+                } else if (bRCommand.equalsIgnoreCase("Talk to Bard") && hasGoggles) {
+                    if (talkedToTheBard){
+                        System.out.println(bardAgain);
+                    } else {
+                        System.out.println(bard);
+                        talkedToTheBard = true;
+                    }
+                } else if (bRCommand.equalsIgnoreCase("Where Am I")) {
+                    if (hasGoggles) {
+                        System.out.println(blackRidgeGoggs);
+                    } else {
+                        System.out.println(blackRidge);
+                    }
+                } else {
+                    System.out.println("I don't understand \"" + bRCommand + ".\"");
+                }
+            }
+
+            while (inSVill) {
+                System.out.println("Now what?");
+                String sVilCommand = sc.nextLine();
+                if (sVilCommand.equalsIgnoreCase("Go to South")) {
+                    System.out.println(lake);
+                    inSVill = false;
+                    inSLake = true;
+                } else if (sVilCommand.equalsIgnoreCase("Go to East")) {
+                    System.out.println(fork);
+                    inSVill = false;
+                    inFork = true;
+                } else if (sVilCommand.equalsIgnoreCase("Go to West")) {
+                    System.out.println("END OF DEMO");
+                    inSVill = false;
+                    gameOver = true;
+                } else if (sVilCommand.equalsIgnoreCase("Talk to Young Woman")) {
+                    if (hasBathed) {
+                        System.out.println(yWomanBath);
+                        knowBilgarden = true;
+                    } else if (hasDog) {
+                        System.out.println(yWomanDog);
+                    } else {
+                        System.out.println(yWoman);
+                    }
+                } else if (sVilCommand.equalsIgnoreCase("Search Cat") || sVilCommand.equalsIgnoreCase("Talk to Cat")) {
+                    if (!hasCat) {
+                        System.out.println(cat);
+                        hasCat = true;
+                    } else {
+                        System.out.println("Cat already in the party.");
+                    }
+                } else if (sVilCommand.equalsIgnoreCase("Where Am I")) {
+                    if (!hasCat) {
+                        System.out.println(spurs);
+                    } else {
+                        System.out.println(spursNoCat);
+                    }
+                } else {
+                    System.out.println("I don't understand \"" + sVilCommand + ".\"");
+                }
+            }
+
+            while (inSLake) {
+                System.out.println("Now what?");
+                String sLakeCommand = sc.nextLine();
+                if (sLakeCommand.equalsIgnoreCase("Go to North")) {
+                    if (!hasCat) {
+                        System.out.println(spurs);
+                    } else {
+                        System.out.println(spursNoCat);
+                    }
+                    inSLake = false;
+                    inSVill = true;
+                } else if (sLakeCommand.equalsIgnoreCase("Swim")) {
+                    System.out.println(swimLake);
+                    hasKey = true;
+                } else if (sLakeCommand.equalsIgnoreCase("Take Bath") || sLakeCommand.equalsIgnoreCase("Bathe")) {
+                    System.out.println(batheLake);
+                    hasBathed = true;
+                } else if (sLakeCommand.equalsIgnoreCase("Fill Canteen") && hasCanteen) {
+                    System.out.println(fillCanteen);
+                    filledCanteen = true;
+                } else if (sLakeCommand.equalsIgnoreCase("Where Am I")) {
+                    System.out.println(lake);
+                } else {
+                    System.out.println("I don't understand \"" + sLakeCommand + ".\"");
                 }
             }
 
