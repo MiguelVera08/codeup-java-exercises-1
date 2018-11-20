@@ -84,12 +84,13 @@ public class Input {
 
     public int getInt() {
         System.out.println("Input number...");
-        if(!this.scanner.hasNextInt()) {
-            System.out.println("Invalid. Input not an integer. Try again.");
-            this.scanner.nextLine();
-            return getInt();
-        } else {
-            return this.scanner.nextInt();
+        while (true) {
+            try {
+                int userInput = Integer.valueOf(this.scanner.next());
+                return userInput;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid. Input not an integer. Try again.");
+            }
         }
     }
 
@@ -108,12 +109,36 @@ public class Input {
 
     public double getDouble() {
         System.out.println("Input number...");
-        if(!this.scanner.hasNextDouble()) {
-            System.out.println("Invalid. Input not a double. Try again.");
-            this.scanner.nextLine();
-            return getDouble();
-        } else {
-            return this.scanner.nextDouble();
+        while (true) {
+            try {
+                double userInput = Double.valueOf(this.scanner.next());
+                return userInput;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid. Input not an double. Try again.");
+            }
         }
     }
+
+    public long getHex() {
+        System.out.println("Input number");
+        while (true) {
+            try {
+                return Long.valueOf(scanner.next(), 16);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid. Input not a hexadecimal. Try again.");
+            }
+        }
+    }
+
+    public long getBinary() {
+        System.out.println("Input number");
+        while (true) {
+            try {
+                return Long.valueOf(scanner.next(), 2);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid. Input not in binary. Try again.");
+            }
+        }
+    }
+
 }
