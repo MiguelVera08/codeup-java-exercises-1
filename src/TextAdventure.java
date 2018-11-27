@@ -684,7 +684,7 @@ public class TextAdventure {
                 } else if (pubCommand.equalsIgnoreCase("Talk to Shadowy Figure")) {
                     System.out.println(shadowyFigure);
                     dressFormFound = true;
-                } else if (dressFormFound && pubCommand.equalsIgnoreCase("Take Dress Form")) {
+                } else if (dressFormFound && pubCommand.equalsIgnoreCase("Search Dress Form")) {
                     System.out.println(takeDressForm);
                     hasDressForm = true;
                 } else if (brokerFound && pubCommand.equalsIgnoreCase("Talk to Information Broker")) {
@@ -891,6 +891,7 @@ public class TextAdventure {
                     if (hasBathed) {
                         System.out.println(yWomanBath);
                         knowBilgarden = true;
+                        System.out.println(bilgarden);
                     } else if (hasDog) {
                         System.out.println(yWomanDog);
                     } else {
