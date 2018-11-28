@@ -66,7 +66,7 @@ public class TextAdventure {
                 "of the merchants here. Your path can continue east and north.";
         String vagrants = "You decide to talk to the vagrants. The vagrants, however, are too cold to say much of anything.";
         String vagrantsWithWool = "You decide to talk to the vagrants. The vagrants see that you are carrying wool, and ask for your sheep pelt. " +
-                "They inform you that they have a lamp that they'd be willing to trade for your wool. The lamp does not have oil.\nTRADE FOR LAMP?";
+                "They inform you that they have a lamp that they'd be willing to trade for your wool. The lamp does not have oil.\n    TRADE FOR LAMP?";
         String noTrade = "You decide not to trade with the vagrants. They are unoffended, but return to shivering.";
         String yesTrade = "You decide to trade with the vagrants. They appreciate your willingness to help and give you the lamp." +
                 "\n    WOOL LOST.\n    GET LAMP.";
@@ -143,7 +143,7 @@ public class TextAdventure {
                 "You begin to ask for information on Thor Oakenbelly, and are informed that his stronghold is on the continent. However, it's " +
                 "exact location is unknown... for free. He knows your people are ones of barterers. He notices the lamp you are carrying. He " +
                 "asks if the lamp was made by Leonardo Vivaldi, a name you've never heard of. He informs you, before you can respond, he can " +
-                "trade the location for the lamp.\n    TRADE THE LAMP?";
+                "trade the location for the lamp.\n    TRADE FOR INFORMATION?";
         String tradeLamp = "You decide to trade the lamp. He tells you that Thor Oakenbelly can be found in the mountain village of Hooverdale. " +
                 "You thank the information broker and go back to the middle of the pub.\n    LAMP LOST";
         String tradeLampNo = "You decide against trading the lamp. Perhaps it actually IS of greater value than originally thought...";
@@ -171,7 +171,6 @@ public class TextAdventure {
         String fork = "You have reached a three-pronged fork in the road. You see a sign posted as well as an old woman. You path can continue north, east, south, and west.";
         String signPost = "You walk up to the sign. It has three different arrows, each pointing to a city. The one headed east is pointing to Hooverdale, the north to Blackridge, and west to Spur's Village.";
         String oldWoman = "You approach the old woman. She seems a bit confused. She asks if you know the way to Bilgarden. You do not know how to get there. The woman turns away, back to the sign, and she looks at it puzzled.";
-        String hooverDale = "You are now at Hooverdale. It is a quite mountain town. There is a blacksmith, a shadowy figure, and a bard. You path can continue north and west.";
         String forest = "You find yourself in a forest. The forest is fairly dark and densely populated with many woodland creatures. You see a twig, a squirrel, and a rabbit. You path can continue north, east, south, and west, however only north and south have a pathway to walk on...";
         String westForest = "You decide, unforunately, to go west. There is nothing to be found here however. The darkness encircles you this day...\n    YOUR GAME HAS ENDED. PLEASE RELOAD PROGRAM.";
         String eastForest = "You decide to go east. You find a small chest.\n    OPEN CHEST?";
@@ -191,7 +190,17 @@ public class TextAdventure {
         String oldWomanBilgarden = "You approach the old woman. She seems a bit confused. She asks if you know the way to Bilgarden. You inform her that the restaurant is in Spur's Village. Overjoyed, she hands you a canteen. It is empty, but better than nothing!\n    GET CANTEEN.";
         String fillCanteen = "You decide to fill your canteen with water from Spur's Lake.\n    CANTEEN FULL.";
         String swimLake = "You decided to go swimming in the lake. Your decision to go for a swim is rewarded when you notice a glimmer in the lake bed. Swimming down to it, you retrieve the item.\n    GET KEY.";
-
+        String hooverDale = "You are now at Hooverdale. It is a quite mountain town. There is a blacksmith, a shadowy figure, and a bard. You path can continue north and west.";
+        String thorReminder = "You remember that this was supposed to be the location of Thor Oakenbelly. However, you have no reason to believe that he is here...";
+        String blacksmithHD = "You decide to talk to the blacksmith. He seems less than interested in what you have to offer, but is willing to listen to your story.";
+        String blacksmithWithCat = "You decide to talk to the blacksmith. He seems less than interested in what you have to offer, but is willing to listen to your story. He looks up from his work and notices your cat. He puts down the iron he was working with, walks over to you and gives the cat a loving pet. He then returns to his work.";
+        String blacksmithWithCatSword = "You decide to talk to the blacksmith. He seems less than interested in what you have to offer, but is willing to listen to your story. He looks up from his work and notices your cat. He puts down the iron he was working with, walks over to you and gives the cat a loving pet. He also notices the sword you happen to be carrying. He takes it from you and looks at with confusion. He informs you the sword is very low quality, and informs you that he'd be willing to take the sword from you and give you a proper weapon. He walks back to his work area, and reveals a glimmering axe.\n    TRADE FOR AXE?";
+        String bsmithHDNoTrade = "You decline to trade with the blacksmith, and retrieve your sword.";
+        String bsmithHDTrade = "You decide to trade with the blacksmith, and are handed the weighty axe.\n    SWORD LOST.\n    GET AXE.";
+        String hDaleShadowNoLamp = "You decide to talk to the shadowy figure. The figure informs you they know of the location of a key to a chest somewhere in the forest. All they would require is a certain lamp... He notices, however you do not have this lamp. and shoos you away.";
+        String hDaleShadow = "You decide to talk to the shadowy figure. The figure informs you they know of the location of a key to a chest somewhere in the forest. All they would require is a certain lamp...\n    TRADE FOR INFORMATION?";
+        String hDaleNoTradeLamp = "You decline to trade the lamp. The shadowy figure turns it's back to you.";
+        String hDaleTradeLamp = "You decide to trade the lamp. The figure informs you that the key can be found at the bottom of a lake near Spur's Village.\n    LAMP LOST.";
 
 
         boolean gameOver = false;
@@ -759,6 +768,9 @@ public class TextAdventure {
                     inValley = true;
                 } else if (forkCommand.equalsIgnoreCase("Go to East")) {
                     System.out.println(hooverDale);
+                    if (tradedLamp) {
+                        System.out.println(thorReminder);
+                    }
                     inFork = false;
                     inHDale = true;
                 } else if (forkCommand.equalsIgnoreCase("Go to North")) {
@@ -891,7 +903,9 @@ public class TextAdventure {
                     if (hasBathed) {
                         System.out.println(yWomanBath);
                         knowBilgarden = true;
-                        System.out.println(bilgarden);
+                        if (talkedToOldWoman) {
+                            System.out.println(bilgarden);
+                        }
                     } else if (hasDog) {
                         System.out.println(yWomanDog);
                     } else {
@@ -942,6 +956,60 @@ public class TextAdventure {
                 }
             }
 
+            while (inHDale){
+                System.out.println("Now what?");
+                String hDCommand = sc.nextLine();
+                if (hDCommand.equalsIgnoreCase("Go to North")) {
+                    System.out.println("END OF DEMO");
+                    inHDale = false;
+                    gameOver = true;
+                } else if (hDCommand.equalsIgnoreCase("Go to West")){
+                    System.out.println(fork);
+                    inHDale = false;
+                    inFork = true;
+                } else if (hDCommand.equalsIgnoreCase("Talk to Blacksmith")) {
+                    if (hasCat && hasSword){
+                        System.out.println(blacksmithWithCatSword);
+                        String answer = sc.nextLine();
+                        if (answer.equalsIgnoreCase("yes")){
+                            System.out.println(bsmithHDTrade);
+                        } else {
+                            System.out.println(bsmithHDNoTrade);
+                        }
+                    } else if (hasCat) {
+                        System.out.println(blacksmithWithCat);
+                    } else {
+                        System.out.println(blacksmithHD);
+                    }
+                } else if (hDCommand.equalsIgnoreCase("Talk to Shadowy Figure")) {
+                    if (hasLamp) {
+                        System.out.println(hDaleShadow);
+                        String answer = sc.nextLine();
+                        if (answer.equalsIgnoreCase("yes")) {
+                            System.out.println(hDaleTradeLamp);
+                            hasLamp = false;
+                        } else {
+                            System.out.println(hDaleNoTradeLamp);
+                        }
+                    } else {
+                        System.out.println(hDaleShadowNoLamp);
+                    }
+                } else if (hDCommand.equalsIgnoreCase("Talk to Bard")) {
+                    if (talkedToTheBard){
+                        System.out.println(bardAgain);
+                    } else {
+                        System.out.println(bard);
+                        talkedToTheBard = true;
+                    }
+                } else if (hDCommand.equalsIgnoreCase("Where Am I")) {
+                    System.out.println(hooverDale);
+                    if (tradedLamp) {
+                        System.out.println(thorReminder);
+                    }
+                } else {
+                    System.out.println("I don't understand \"" + hDCommand + ".\"");
+                }
+            }
         }
     }
 }
