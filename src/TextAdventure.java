@@ -201,7 +201,12 @@ public class TextAdventure {
         String hDaleShadow = "You decide to talk to the shadowy figure. The figure informs you they know of the location of a key to a chest somewhere in the forest. All they would require is a certain lamp...\n    TRADE FOR INFORMATION?";
         String hDaleNoTradeLamp = "You decline to trade the lamp. The shadowy figure turns it's back to you.";
         String hDaleTradeLamp = "You decide to trade the lamp. The figure informs you that the key can be found at the bottom of a lake near Spur's Village.\n    LAMP LOST.";
-
+        String farmland = "You find yourself in a large area of farmland. It would appear to be the land that provides the food for Spur's Village. You see a farm hand, a dog, and the crops being grown on the field. Your path can continue east, south, and west.";
+        String farmlandNoDog = "You find yourself in a large area of farmland. It would appear to be the land that provides the food for Spur's Village. You see a farm hand, and the crops being grown on the field. Your path can continue east, south, and west.";
+        String farmlandDog = "You decided to look over at the dog. The dog looks up at you and begins to bark. It looks at you with love in it's eyes. It appears to understand your pain, and wants to be your friend.\n    DOG ADDED TO PARTY.";
+        String fDogWithDog = "You decided to look over at the dog. The dog looks looks at your dog and give a playful bark. The two begin to play as you smile wryly. You give both dogs a loving pet, and the farmland dog trots away.";
+        String farmHand = "You decide to talk to the farmhand. He notices you are on a quest and is will to give you something that might be useful. All they want is a drink of water.";
+        String giveWater = "\n    LET FARMHAND DRINK FROM CANTEEN?";
 
         boolean gameOver = false;
         boolean newGame = true;
@@ -219,6 +224,7 @@ public class TextAdventure {
         boolean inBRidge = false;
         boolean inSVill = false;
         boolean inSLake = false;
+        boolean inFarm = true;
         boolean hasKnife = false;
         boolean hasDog = false;
         boolean hasHide = false;
@@ -244,6 +250,7 @@ public class TextAdventure {
         boolean tradedLamp = false;
         boolean sunvaleDiscovered = false;
         boolean talkedToTheBard = false;
+        boolean farmDog = false;
 
         // The actual Game itself...
 
@@ -791,6 +798,7 @@ public class TextAdventure {
                         hasCanteen = true;
                     } else {
                         System.out.println(oldWoman);
+                        talkedToOldWoman = true;
                     }
                 } else if (forkCommand.equalsIgnoreCase("Search Sign")) {
                     System.out.println(signPost);
@@ -896,9 +904,13 @@ public class TextAdventure {
                     inSVill = false;
                     inFork = true;
                 } else if (sVilCommand.equalsIgnoreCase("Go to West")) {
-                    System.out.println("END OF DEMO");
+                    if (!farmDog) {
+                        System.out.println(farmland);
+                    } else {
+                        System.out.println(farmlandNoDog);
+                    }
                     inSVill = false;
-                    gameOver = true;
+                    inFarm = true;
                 } else if (sVilCommand.equalsIgnoreCase("Talk to Young Woman")) {
                     if (hasBathed) {
                         System.out.println(yWomanBath);
@@ -953,6 +965,45 @@ public class TextAdventure {
                     System.out.println(lake);
                 } else {
                     System.out.println("I don't understand \"" + sLakeCommand + ".\"");
+                }
+            }
+
+            while (inFarm) {
+                System.out.println("Now what?");
+                String farmCommand = sc.nextLine();
+                if (farmCommand.equalsIgnoreCase("Go to East")) {
+                    if (!hasCat) {
+                        System.out.println(spurs);
+                    } else {
+                        System.out.println(spursNoCat);
+                    }
+                } else if (farmCommand.equalsIgnoreCase("Go to South")) {
+                    System.out.println("END OF DEMO");
+                    inFarm = false;
+                    gameOver = true;
+                } else if (farmCommand.equalsIgnoreCase("Go to West")) {
+                    System.out.println("END OF DEMO");
+                    inFarm = false;
+                    gameOver = true;
+                } else if (farmCommand.equalsIgnoreCase("Search Dog")) {
+                    if (hasDog && !farmDog) {
+                        System.out.println(fDogWithDog);
+                        farmDog = true;
+                    } else if (!hasDog && !farmDog){
+                        System.out.println(farmlandDog);
+                        hasDog = true;
+                        farmDog = true;
+                    } else {
+                        System.out.println("Your dog looks up at you and gives a slight whine. You give it a loving pet.");
+                    }
+                } else if (farmCommand.equalsIgnoreCase("Where Am I")) {
+                    if (!farmDog) {
+                        System.out.println(farmland);
+                    } else {
+                        System.out.println(farmlandNoDog);
+                    }
+                } else {
+                    System.out.println("I don't understand \"" + farmCommand + ".\"");
                 }
             }
 
