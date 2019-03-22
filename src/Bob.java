@@ -9,7 +9,7 @@ public class Bob {
         while (!response.equalsIgnoreCase("QUIT")) {
             System.out.println("Lay it on me...");
             response = sc.nextLine();
-            if (response.equals("")) {
+            if (response.isEmpty()) {
                 System.out.println("Fine. Be that way!");
             } else if (response.endsWith("!")) {
                 System.out.println("Whoa, chill out!");
