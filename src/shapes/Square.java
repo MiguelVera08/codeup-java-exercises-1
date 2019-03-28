@@ -1,27 +1,37 @@
 package shapes;
 
 public class Square extends Rectangle {
-    private int side;
 
     public Square() { }
 
-    public Square(int side) {
-        this.side = side;
+    public Square(int side){
+        super(side, side);
     }
 
-    public int getArea() {
-        return (int) Math.pow(this.side,2);
-    }
+//    public Square(int side) {
+//        this.side = side;
+//    }
 
-    public int getPerimeter() {
-        return 4 * this.side;
-    }
+//    public int getArea() {
+//        return (int) Math.pow(this.getLength(),2);
+//    }
+//
+//    public int getPerimeter() {
+//        return 4 * this.getLength();
+//    }
 
     public int getSide() {
-        return side;
+        return getLength();
     }
 
     public void setSide(int side) {
-        this.side = side;
+        this.setLength(side);
+        this.setWidth(side);
+    }
+
+    public static void main(String[] args) {
+        Square sq = new Square(3);
+        System.out.println(sq.getPerimeter());
+        System.out.println(sq.getArea());
     }
 }
