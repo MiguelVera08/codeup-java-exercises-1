@@ -86,7 +86,8 @@ public class Input {
         System.out.println("Input number...");
         while (true) {
             try {
-                int userInput = Integer.valueOf(this.scanner.next());
+                int userInput = Integer.valueOf(this.scanner.nextLine());
+                System.out.println("Input acceptable");
                 return userInput;
             } catch (NumberFormatException e) {
                 System.out.println("Invalid. Input not an integer. Try again.");
@@ -111,7 +112,8 @@ public class Input {
         System.out.println("Input number...");
         while (true) {
             try {
-                double userInput = Double.valueOf(this.scanner.next());
+                double userInput = Double.valueOf(this.scanner.nextLine());
+                System.out.println("Input acceptable");
                 return userInput;
             } catch (NumberFormatException e) {
                 System.out.println("Invalid. Input not an double. Try again.");
@@ -123,7 +125,9 @@ public class Input {
         System.out.println("Input hexadecimal number");
         while (true) {
             try {
-                return Long.valueOf(scanner.next(), 16);
+                long hex =  Long.valueOf(scanner.next(), 16);
+                System.out.println("Input acceptable");
+                return hex;
             } catch (NumberFormatException e) {
                 System.out.println("Invalid. Input not a hexadecimal. Try again.");
             }
@@ -134,7 +138,9 @@ public class Input {
         System.out.println("Input binary number");
         while (true) {
             try {
-                return Long.valueOf(scanner.next(), 2);
+                long bin = Long.valueOf(scanner.nextLine(), 2);
+                System.out.println("Input acceptable");
+                return bin;
             } catch (NumberFormatException e) {
                 System.out.println("Invalid. Input not in binary. Try again.");
             }
