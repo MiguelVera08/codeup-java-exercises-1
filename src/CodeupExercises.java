@@ -7,27 +7,27 @@ public class CodeupExercises {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
+//        scanner.useDelimiter("\n");
+
+        double pi = 3.14159;
+        System.out.format("The value of pi is approximately %.2f", pi);
+
+        System.out.print("\nEnter an integer: ");
+        int userNum = scanner.nextInt();
+
+        System.out.printf("You entered: --> \"%s\" <--", userNum);
+
+        System.out.print("\nEnter 3 words: ");
+        String userInput = scanner.next();
+        String userInput2 = scanner.next();
+        String userInput3 = scanner.next();
+
+        System.out.printf("You entered: --> \"%s, %s, %s\" <--", userInput, userInput2, userInput3);
         scanner.useDelimiter("\n");
+        System.out.print("\nEnter a sentence: ");
+        String userSentence = scanner.next();
 
-//        double pi = 3.14159;
-//        System.out.format("The value of pi is approximately %.2f", pi);
-
-//        System.out.print("\nEnter an integer: ");
-//        int userNum = scanner.nextInt();
-//
-//        System.out.printf("You entered: --> \"%s\" <--", userNum);
-
-//        System.out.print("\nEnter 3 words: ");
-//        String userInput = scanner.next();
-//        String userInput2 = scanner.next();
-//        String userInput3 = scanner.next();
-//
-//        System.out.printf("You entered: --> \"%s, %s, %s\" <--", userInput, userInput2, userInput3);
-
-//        System.out.print("\nEnter a sentence: ");
-//        String userSentence = scanner.nextLine();
-//
-//        System.out.printf("You entered: --> \"%s\" <--", userSentence);
+        System.out.printf("You entered: --> \"%s\" <--", userSentence);
 
         System.out.print("\nEnter in length:");
         float length = scanner.nextFloat();
