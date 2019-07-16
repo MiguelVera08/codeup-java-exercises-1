@@ -2,6 +2,8 @@ package toyota;
 
 public class CarTester {
     public static void main(String[] args) {
+        System.out.println(Vehicle.canMove);
+        System.out.println(Vehicle.isMachine);
         EightSix panda = new EightSix();
         panda.makeTRD();
         panda.makeAutomatic();
@@ -12,6 +14,7 @@ public class CarTester {
         panda.leatherSeats();
         System.out.println(panda.getPriceBase());
         System.out.println(panda.honkHorn());
+        panda.move();
         System.out.println("===~~~---+++***+++---~~~===");
         Car lc = new LandCruiser();
         System.out.println(lc.getModel());
@@ -24,5 +27,10 @@ public class CarTester {
         System.out.println(lc.getPriceBase());
         lc.leatherSeats();
         System.out.println(lc.getPriceBase());
+        lc.move();
+        System.out.println("===~~~---+++***+++---~~~===");
+        Car tun = new Tundra();
+        tun.move();
+        System.out.println(tun.getMpgCity());
     }
 }

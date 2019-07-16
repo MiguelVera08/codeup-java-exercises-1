@@ -148,5 +148,10 @@ public class Tundra extends Car{
     public void leatherSeats() {
         priceBase += 1160;
     }
+
+    @Override
+    public void move() {
+        System.out.println("Grrrrr- GrRRRRR!!!!");
+    }
 }
 

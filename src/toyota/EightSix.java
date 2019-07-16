@@ -76,4 +76,9 @@ public class EightSix extends Car {
     public void leatherSeats() {
         this.priceBase += 450;
     }
+
+    @Override
+    public void move() {
+        System.out.println("Vrrrrrrmmmm!!!!");
+    }
 }

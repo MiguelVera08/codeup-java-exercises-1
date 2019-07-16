@@ -2,7 +2,7 @@ package toyota;
 
 import util.Input;
 
-public abstract class Car {
+public abstract class Car implements Vehicle{
     Input sc = new Input();
     protected String model;
     protected String carType;
@@ -34,4 +34,8 @@ public abstract class Car {
 
     public abstract int getPriceBase();
 
+    @Override
+    public void move(){
+        System.out.println("Gurgle sputter!!!");
+    }
 }

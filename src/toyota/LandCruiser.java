@@ -44,4 +44,9 @@ public class LandCruiser extends Car{
     public void leatherSeats() {
         priceBase += 1160;
     }
+
+    @Override
+    public void move() {
+        System.out.println("Rrrrrrr!!!!");
+    }
 }
