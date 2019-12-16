@@ -112,7 +112,7 @@ public class Input {
         System.out.println("Input number...");
         while (true) {
             try {
-                double userInput = Double.valueOf(this.scanner.nextLine());
+                double userInput = Double.valueOf(getString());
                 System.out.println("Input acceptable");
                 return userInput;
             } catch (NumberFormatException e) {

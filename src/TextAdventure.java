@@ -204,7 +204,7 @@ public class TextAdventure {
         String farmland = "You find yourself in a large area of farmland. It would appear to be the land that provides the food for Spur's Village. You see a farm hand, a dog, and the crops being grown on the field. Your path can continue east, south, and west.";
         String farmlandNoDog = "You find yourself in a large area of farmland. It would appear to be the land that provides the food for Spur's Village. You see a farm hand, and the crops being grown on the field. Your path can continue east, south, and west.";
         String farmlandDog = "You decided to look over at the dog. The dog looks up at you and begins to bark. It looks at you with love in it's eyes. It appears to understand your pain, and wants to be your friend.\n    DOG ADDED TO PARTY.";
-        String fDogWithDog = "You decided to look over at the dog. The dog looks looks at your dog and give a playful bark. The two begin to play as you smile wryly. You give both dogs a loving pet, and the farmland dog trots away.";
+        String fDogWithDog = "You decided to look over at the dog. The dog looks at your dog and give a playful bark. The two begin to play as you smile wryly. You give both dogs a loving pet, and the farmland dog trots away.";
         String farmHand = "You decide to talk to the farmhand. He notices you are on a quest and is will to give you something that might be useful. All they want is a drink of water.";
         String giveWater = "\n    LET FARMHAND DRINK FROM CANTEEN?";
 
@@ -224,7 +224,7 @@ public class TextAdventure {
         boolean inBRidge = false;
         boolean inSVill = false;
         boolean inSLake = false;
-        boolean inFarm = true;
+        boolean inFarm = false;
         boolean hasKnife = false;
         boolean hasDog = false;
         boolean hasHide = false;
@@ -977,6 +977,8 @@ public class TextAdventure {
                     } else {
                         System.out.println(spursNoCat);
                     }
+                    inFarm = false;
+                    inSVill= true;
                 } else if (farmCommand.equalsIgnoreCase("Go to South")) {
                     System.out.println("END OF DEMO");
                     inFarm = false;
